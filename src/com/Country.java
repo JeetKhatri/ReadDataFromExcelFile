@@ -1,13 +1,17 @@
 package com;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Country {
 
 	public static void main(String[] args) {
 		ExcelReadExample temp = new ExcelReadExample();
+		Temp obj = new Temp();
 		try {
-			String str = temp.readExcel("e:\\", "Countries.xls", "Sheet1");
+			String str = temp.readExcel("E:\\Study\\GitHub\\ReadDataFromExcelFile\\", "Countries.xls", "Sheet1");
 			System.out.println(str);
 			String arr[] = str.split(";");
 			String name[] = new String[arr.length/2];
@@ -38,7 +42,7 @@ public class Country {
 			String insert="insert into country(countryId,countryName,countryCode) values";
 			String query="";
 			for (int i = 0; i < code.length; i++) {
-				query+=",('CID"+i+"','"+name[i]+"','"+code[i]+"')";
+				query+=",('"+obj.getRandomString(15)+"','"+name[i]+"','"+code[i]+"')";
 			}
 			System.out.println(insert+query.substring(1,query.length()));
 			System.out.println(max+"<<");
@@ -46,5 +50,8 @@ public class Country {
 			e.printStackTrace();
 		}
 	}
-
 }
+
+
+
+
